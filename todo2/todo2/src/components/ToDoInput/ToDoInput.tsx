@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 
-interface ToDoInputProps {
-    handleAddTask: (task: string) => void;
+interface InputProps {
+    handleAddTaskToList: (taskToAdd: string) => void;
 }
 
-interface ToDoInputState {
-    taskToAdd: string;
-}
 
-export default class ToDoInput extends Component<ToDoInputProps, ToDoInputState> {
+export default class ToDoInput extends Component<InputProps, {}> {
     state = {
         taskToAdd: ''
     }
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ taskToAdd: event.target.value })
+        console.log("taskToAdd", this.state.taskToAdd)
     }
-    
-    handleAdd = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        //  run the method from props with the input from the state
-        this.props.handleAddTask(this.state.taskToAdd)
-        //  clear the input
+
+    handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
+        this.props.handleAddTaskToList(this.state.taskToAdd)
         this.setState({ taskToAdd: '' })
     }
+    
     
     render() {
         return (
