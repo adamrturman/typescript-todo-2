@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
+import ToDo from '../../interfaces/ToDo'
 import ToDoItem from '../ToDoItem/ToDoItem'
 
-interface ToDo {
-    text: string;
-    isCompleted: boolean;
-}
 
 interface ListProps {
-    list: ToDo [];
+    list: ToDo[];
+    handleDelete: (index: number) => void;
 }
 
+
 export default class ToDoList extends Component<ListProps, {}> {
-
-
+    
     render() {
-       const displayedList = this.props.list.map((toDo, index) => (
-            // <li key={index}>{toDo.text}</li>
-            <ToDoItem key={index} toDo={toDo} index={index} />
+        const displayedList = this.props.list.map((toDo: ToDo, index) => (            
+            <ToDoItem key={index} index={index} toDo={toDo} handleDelete={this.props.handleDelete} />
         ))
-       
-     
         return (
             <>
                 <h2>List</h2>
