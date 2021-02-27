@@ -30,11 +30,24 @@ class App extends Component {
     this.setState({ list: listWithDeletion })
 }
 
+  handleComplete = (index: number) => {
+    //  find the toDo from the list whose index matches
+    const listWithCompletions = this.state.list.map((toDo: ToDo, i: number) => {
+      if (i === index) {
+        toDo.isCompleted = ! toDo.isCompleted
+      }
+      return toDo;
+    });
+    this.setState({ list: listWithCompletions })
+    //  change that toDo's isCompleted to true
+    //  redefine the list 
+  };
+
   render() {
     return (
       <div className="App">
         <ToDoInput handleAddTask={this.handleAddTask} />
-        <ToDoList list={this.state.list} handleDelete={this.handleDelete}/>
+        <ToDoList list={this.state.list} handleDelete={this.handleDelete} handleComplete={this.handleComplete}/>
       </div>
     );
   }
